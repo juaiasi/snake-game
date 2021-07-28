@@ -6,6 +6,11 @@ snake[0] = {
     x: 8 * box,
     y: 8 * box
 }
+let apple = {
+    x: Math.floor(Math.random() * 16) * box,
+    y: Math.floor(Math.random() * 16) * box
+}
+
 let direction = "right";
 
 function criarBG(){
@@ -30,14 +35,8 @@ function update (event){
 }
 
 function criarApple(){
-    function generateRandomFloatInRange(max) {
-        return Math.floor(Math.random() * max);
-    }
-    let applePosition = [];
-    applePosition[0] = generateRandomFloatInRange(15)*box;
-    applePosition[1] = generateRandomFloatInRange(15)*box;
     context.fillStyle = "red";
-    context.fillRect(applePosition[0], applePosition[1], box, box);
+    context.fillRect(apple.x, apple.y, box, box);
 }
 
 criarApple();
@@ -50,6 +49,7 @@ function iniciarJogo(){
 
     criarBG();
     criarCobra();
+    criarApple();
 
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
