@@ -7,8 +7,8 @@ snake[0] = {
     y: 8 * box
 }
 let apple = {
-    x: Math.floor(Math.random() * 16) * box,
-    y: Math.floor(Math.random() * 16) * box
+    x: Math.floor(Math.random() * 15 + 1) * box,
+    y: Math.floor(Math.random() * 15 + 1) * box
 }
 
 let direction = "right";
@@ -59,7 +59,12 @@ function iniciarJogo(){
     if(direction == "up") snakeY -= box;
     if(direction == "down") snakeY += box;
 
-    snake.pop();
+    if(snakeX != apple.x || snakeY != apple.y){
+        snake.pop();
+    }else{
+        apple.y = Math.floor(Math.random() * 15 + 1) * box;
+        apple.x = Math.floor(Math.random() * 15 + 1) * box;
+    }
 
     let newHead = {
         x: snakeX,
@@ -69,7 +74,7 @@ function iniciarJogo(){
     snake.unshift(newHead);
 }
 
-let jogo = setInterval(iniciarJogo, 100);
+let jogo = setInterval(iniciarJogo, 200);
 
 
 
